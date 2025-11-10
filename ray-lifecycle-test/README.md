@@ -2,6 +2,32 @@
 
 This test demonstrates how the Ray cluster lifecycle works with different `shutdown_after_job_finishes` settings.
 
+## 🚀 Quick Start (EKS Deployment)
+
+**Have an EKS cluster with Flyte installed?** Deploy in 3 minutes:
+
+```bash
+# One-command deployment (sets up ECR, builds image, registers workflow)
+./deploy.sh
+
+# After initial setup, quick redeploy:
+./quick-deploy.sh
+
+# Check if your cluster can pull from ECR:
+./check-ecr-access.sh
+```
+
+The `deploy.sh` script will:
+1. ✅ Check prerequisites (AWS CLI, Docker, kubectl, Flyte)
+2. ✅ Create ECR repository
+3. ✅ Build and push Docker image
+4. ✅ Register workflow to your Flyte cluster
+5. ✅ Optionally execute the test
+
+**See [CLUSTER_DEPLOYMENT.md](CLUSTER_DEPLOYMENT.md) for manual deployment steps or alternative registries.**
+
+---
+
 ## What This Test Demonstrates
 
 1. **Ray cluster creation** - KubeRay operator provisions head/worker/submitter pods

@@ -55,7 +55,11 @@ def ray_task_no_shutdown() -> str:
     from datetime import datetime
 
     # Initialize Ray (connects to cluster created by KubeRay)
-    ray.init(address="auto")
+    # Use ignore_reinit_error for local testing, or check if already initialized
+    if not ray.is_initialized():
+        ray.init(address="auto")
+    else:
+        print("Ray already initialized, using existing connection")
 
     print(f"[{datetime.now()}] Ray cluster initialized")
     print(f"Available resources: {ray.cluster_resources()}")
@@ -111,7 +115,11 @@ def ray_task_with_shutdown() -> str:
     import time
     from datetime import datetime
 
-    ray.init(address="auto")
+    # Initialize Ray (connects to cluster created by KubeRay)
+    if not ray.is_initialized():
+        ray.init(address="auto")
+    else:
+        print("Ray already initialized, using existing connection")
 
     print(f"[{datetime.now()}] Ray cluster initialized")
     print(f"Available resources: {ray.cluster_resources()}")

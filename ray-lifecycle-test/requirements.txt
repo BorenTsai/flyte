@@ -1,0 +1,11 @@
+# Requirements for Ray Lifecycle Testing
+
+# Core Flyte dependencies
+flytekit>=1.10.0
+flytekitplugins-ray>=1.10.0
+
+# Ray dependencies (will be used in the Ray cluster)
+ray[default]>=2.9.0
+
+# Optional: for better output formatting
+rich>=13.0.0

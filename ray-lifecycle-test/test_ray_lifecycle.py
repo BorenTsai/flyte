@@ -10,7 +10,20 @@ This test demonstrates:
 
 from datetime import timedelta
 from flytekit import task, workflow, Resources
-from flytekitplugins.ray import RayJobConfig, WorkerNodeConfig
+
+# Try to import the Ray plugin - if not available, provide helpful error
+try:
+    from flytekitplugins.ray import RayJobConfig, WorkerNodeConfig
+except ImportError:
+    print("\n" + "="*80)
+    print("ERROR: Ray plugin not installed!")
+    print("="*80)
+    print("\nPlease install the Ray plugin:")
+    print("  pip install flytekitplugins-ray")
+    print("\nOr install all requirements:")
+    print("  pip install -r requirements.txt")
+    print("="*80 + "\n")
+    raise
 
 # ==============================================================================
 # TEST 1: Cluster stays alive after job completion
